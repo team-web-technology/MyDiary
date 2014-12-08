@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 4, 2014 12:47:14 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="org.com.myapp.Comment" table="comment" catalog="diary_v2">
+        <id name="idComment" type="java.lang.Integer">
+            <column name="idComment" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userprofile" class="org.com.myapp.Userprofile" fetch="select">
+            <column name="IdAuthor" not-null="true" />
+        </many-to-one>
+        <many-to-one name="diary" class="org.com.myapp.Diary" fetch="select">
+            <column name="IdDairy" not-null="true" />
+        </many-to-one>
+        <property name="text" type="string">
+            <column name="Text" not-null="true" />
+        </property>
+        <property name="isApproved" type="boolean">
+            <column name="IsApproved" not-null="true" />
+        </property>
+        <property name="parentId" type="int">
+            <column name="ParentId" not-null="true" />
+        </property>
+        <property name="create" type="timestamp">
+            <column name="Create" length="19" />
+        </property>
+        <property name="modified" type="timestamp">
+            <column name="Modified" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<bean id="hashCode" class="org.com.myapp.hash.HashCode"></bean>
+
+
+	<bean id="roleDao" class="org.com.myapp.dao.RoleDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="roleService" class="org.com.myapp.service.RoleServiceImpl">
+		<property name="roleDao" ref="roleDao"></property>
+	</bean>
+	
+	<bean id="userDao" class="org.com.myapp.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="userService" class="org.com.myapp.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean>
+
+
+	<bean id="userAuthenticationService" class="org.com.myapp.service.UserAuthenticationService">
+		<property name="userDao" ref="userDao"></property>
+		<property name="roleDao" ref="roleDao"></property>
+	</bean>
+
+
+
+	<!-- Validate -->
+	<bean id="registerFormValidate" class="org.com.myapp.validation.RegisterFormValidate">
+		<property name="userService" ref="userService"></property>
+	</bean>
+
+
+
+
+	<!-- provider -->
+
+	<bean id="encoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<constructor-arg name="strength" value="10" />
+	</bean>
+
+	<bean id="myAuthenticationProvider" class="org.com.myapp.provider.MyAuthenticationProvider">
+		<property name="userAuthenticationService" ref="userAuthenticationService"></property>
+		<property name="encoder" ref="encoder"></property>
+
+	</bean>
+
+
+
+
+</beans>

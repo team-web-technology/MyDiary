@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 4, 2014 12:47:14 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="diary_v2" name="org.com.myapp.FriendRequest" table="friendrequest">
+    <composite-id class="org.com.myapp.FriendRequestId" name="id">
+      <key-property name="senderId" type="int">
+        <column name="SenderId"/>
+      </key-property>
+      <key-property name="receiverId" type="int">
+        <column name="ReceiverId"/>
+      </key-property>
+    </composite-id>
+    <many-to-one class="org.com.myapp.Userprofile" fetch="select" insert="false" name="userprofileByReceiverId" update="false">
+      <column name="ReceiverId" not-null="true"/>
+    </many-to-one>
+    <many-to-one class="org.com.myapp.Userprofile" fetch="select" insert="false" name="userprofileBySenderId" update="false">
+      <column name="SenderId" not-null="true"/>
+    </many-to-one>
+    <property name="created" type="timestamp">
+      <column length="19" name="Created"/>
+    </property>
+  </class>
+</hibernate-mapping>

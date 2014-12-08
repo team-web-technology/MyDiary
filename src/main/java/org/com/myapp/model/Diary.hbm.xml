@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 4, 2014 12:47:14 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="diary_v2" name="org.com.myapp.Diary" table="diary">
+    <id name="idDiary" type="java.lang.Integer">
+      <column name="IdDiary"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="org.com.myapp.Userprofile" fetch="select" name="userprofile">
+      <column name="AuthorId" not-null="true"/>
+    </many-to-one>
+    <property name="title" type="string">
+      <column name="Title"/>
+    </property>
+    <property name="body" type="string">
+      <column name="Body"/>
+    </property>
+    <property name="excerpt" type="string">
+      <column length="512" name="Excerpt"/>
+    </property>
+    <property name="isCommentClosed" type="java.lang.Boolean">
+      <column name="IsCommentClosed"/>
+    </property>
+    <property name="privacy" type="java.lang.Integer">
+      <column name="Privacy"/>
+    </property>
+    <property name="created" type="timestamp">
+      <column length="19" name="Created"/>
+    </property>
+    <property name="modified" type="timestamp">
+      <column length="19" name="Modified"/>
+    </property>
+    <set fetch="select" inverse="false" lazy="true" name="categories" table="diaryincategory">
+      <key>
+        <column name="DiaryId" not-null="true"/>
+      </key>
+      <many-to-many entity-name="org.com.myapp.Category">
+        <column name="CategoryId" not-null="true"/>
+      </many-to-many>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="diarypermissions" table="diarypermission">
+      <key>
+        <column name="DiaryId" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.DiaryPermission"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="comments" table="comment">
+      <key>
+        <column name="IdDairy" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.Comment"/>
+    </set>
+  </class>
+</hibernate-mapping>

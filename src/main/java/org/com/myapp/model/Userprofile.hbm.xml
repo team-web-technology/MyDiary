@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 4, 2014 12:47:14 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+  <class catalog="diary_v2" name="org.com.myapp.Userprofile" table="userprofile">
+    <id name="id" type="java.lang.Integer">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="org.com.myapp.Role" fetch="select" name="role">
+      <column name="IdRole" not-null="true"/>
+    </many-to-one>
+    <property name="username" type="string">
+      <column length="100" name="Username" not-null="true"/>
+    </property>
+    <property name="password" type="string">
+      <column length="100" name="Password" not-null="true"/>
+    </property>
+    <property name="email" type="string">
+      <column name="Email" not-null="true" unique="true"/>
+    </property>
+    <property name="acountNonExpired" type="java.lang.Boolean">
+      <column name="AcountNonExpired"/>
+    </property>
+    <property name="acountNonLocked" type="java.lang.Boolean">
+      <column name="AcountNonLocked"/>
+    </property>
+    <property name="credentialsNonExpired" type="java.lang.Boolean">
+      <column name="CredentialsNonExpired"/>
+    </property>
+    <property name="enabled" type="java.lang.Boolean">
+      <column name="Enabled"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="diaries" table="diary">
+      <key>
+        <column name="AuthorId" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.Diary"/>
+    </set>
+    <set fetch="select" inverse="false" lazy="true" name="userprofilesForFriendId" table="friend">
+      <key>
+        <column name="UserId" not-null="true"/>
+      </key>
+      <many-to-many entity-name="org.com.myapp.Userprofile">
+        <column name="FriendId" not-null="true"/>
+      </many-to-many>
+    </set>
+    <set fetch="select" inverse="false" lazy="true" name="userprofilesForUserId" table="friend">
+      <key>
+        <column name="FriendId" not-null="true"/>
+      </key>
+      <many-to-many entity-name="org.com.myapp.Userprofile">
+        <column name="UserId" not-null="true"/>
+      </many-to-many>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="comments" table="comment">
+      <key>
+        <column name="IdAuthor" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.Comment"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="friendrequestsForReceiverId" table="friendrequest">
+      <key>
+        <column name="ReceiverId" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.FriendRequest"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="diarypermissions" table="diarypermission">
+      <key>
+        <column name="InvitedUserId" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.DiaryPermission"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="friendrequestsForSenderId" table="friendrequest">
+      <key>
+        <column name="SenderId" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.FriendRequest"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="categories" table="category">
+      <key>
+        <column name="AuthorId" not-null="true"/>
+      </key>
+      <one-to-many class="org.com.myapp.Category"/>
+    </set>
+  </class>
+</hibernate-mapping>

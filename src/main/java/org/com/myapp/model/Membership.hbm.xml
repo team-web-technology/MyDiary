@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 4, 2014 12:47:14 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="org.com.myapp.Membership" table="membership" catalog="diary_v2">
+        <id name="idmembership" type="int">
+            <column name="idmembership" />
+            <generator class="assigned" />
+        </id>
+        <property name="createdate" type="timestamp">
+            <column name="createdate" length="19" />
+        </property>
+        <property name="confirmationToken" type="string">
+            <column name="confirmationToken" length="125" />
+        </property>
+        <property name="isConfirmed" type="java.lang.Boolean">
+            <column name="IsConfirmed" />
+        </property>
+        <property name="lastPasswordFailureDate" type="timestamp">
+            <column name="LastPasswordFailureDate" length="19" />
+        </property>
+        <property name="passwordFailuresSinceLastSuccess" type="java.lang.Integer">
+            <column name="PasswordFailuresSinceLastSuccess" />
+        </property>
+        <property name="passwordChangedDate" type="timestamp">
+            <column name="PasswordChangedDate" length="19" />
+        </property>
+        <property name="passwordVerificationToken" type="string">
+            <column name="PasswordVerificationToken" length="125" />
+        </property>
+        <property name="passwordVerificationTokenExpirationDate" type="timestamp">
+            <column name="PasswordVerificationTokenExpirationDate" length="19" />
+        </property>
+    </class>
+</hibernate-mapping>
