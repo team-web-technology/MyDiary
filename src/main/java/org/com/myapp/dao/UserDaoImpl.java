@@ -1,7 +1,5 @@
 package org.com.myapp.dao;
 
-import java.util.List;
-
 import org.com.myapp.form.User;
 import org.com.myapp.model.UserProfile;
 import org.hibernate.Session;
@@ -19,12 +17,14 @@ public class UserDaoImpl implements UserDao {
 
 	// find user by id
 	@Override
-	public UserProfile findUserById(int id) throws DataAccessException {
+	
+	public UserProfile findUserById(int id)throws DataAccessException {
 
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-
-		UserProfile user = (UserProfile) session.createCriteria(UserProfile.class)
+		
+		
+		User user = (User) session.createCriteria(UserProfile.class)
 				.add(Restrictions.eq("id", id)).uniqueResult();
 		session.getTransaction().commit();
 		return user;
@@ -32,48 +32,28 @@ public class UserDaoImpl implements UserDao {
 
 	// find user by email
 	@Override
-	public UserProfile findUserByName(String email) throws DataAccessException {
+	public UserProfile findUserByName(String email)throws DataAccessException {
 
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-
-		UserProfile user = (UserProfile) session
-				.createCriteria(UserProfile.class)
+		
+		UserProfile user = (UserProfile) session.createCriteria(UserProfile.class)
 				.add(Restrictions.eq("email", email)).uniqueResult();
 		session.getTransaction().commit();
 		return user;
 	}
 
 	@Override
-	public UserProfile createUser(UserProfile user) throws DataAccessException {
-		Session session = sessionFactory.getCurrentSession();
+	public void createUser(UserProfile user) throws DataAccessException {
+		Session session =sessionFactory.getCurrentSession();
 		session.beginTransaction();
 		session.saveOrUpdate(user);
+		
+		
 		session.getTransaction().commit();
 		
-		return user;
-
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<UserProfile> getUserList(int from, int to)
-			throws DataAccessException {
-		Session session = sessionFactory.getCurrentSession();
-		session.beginTransaction();
-
-		List<UserProfile> users = session
-				.createSQLQuery(
-						"select u.*,r.* " + "from userprofile u,role r "
-								+ "where u.IdRole = r.idauthority")
-				.addEntity(UserProfile.class).setFirstResult(from)
-				.setMaxResults(to).list();
-
-		session.getTransaction().commit();
-
-		return users;
-	}
-
+	
 	public SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
@@ -81,5 +61,7 @@ public class UserDaoImpl implements UserDao {
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
+	
 
 }
