@@ -74,13 +74,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public ArrayList<UserProfile> getUserList(int from, int to) {
+	public ArrayList<User> getUserList(int from, int to) {
 
-		ArrayList<UserProfile> uList = new ArrayList<UserProfile>();
+		ArrayList<User> uList = new ArrayList<User>();
 
-		List<UserProfile> users = userDao.getUserList(from, to);
+		List<User> users = userDao.getUserList(from, to);
 		if (users != null) {
-			uList = new ArrayList<UserProfile>(users);
+			uList = new ArrayList<User>(users);
 		}
 
 		return uList;
@@ -114,4 +114,22 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
+	public RoleDao getRoleDao() {
+		return roleDao;
+	}
+
+	public void setRoleDao(RoleDao roleDao) {
+		this.roleDao = roleDao;
+	}
+
+	public HashCode getHashCode() {
+		return hashCode;
+	}
+
+	public void setHashCode(HashCode hashCode) {
+		this.hashCode = hashCode;
+	}
+
+	
+	
 }

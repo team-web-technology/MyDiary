@@ -35,7 +35,7 @@ public class RoleDaoImpl implements RoleDao {
 		session.beginTransaction();
 
 		Role r = (Role) session.createCriteria(Role.class)
-				.add(Restrictions.eq("role", name)).uniqueResult();
+				.add(Restrictions.eq("name", name)).uniqueResult();
 		session.getTransaction().commit();
 		return r;
 	}

@@ -3,9 +3,11 @@ package org.com.myapp.controller;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import org.com.myapp.form.User;
 import org.com.myapp.model.UserProfile;
 import org.com.myapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,13 +22,13 @@ public class AdminController {
 	
 	@RequestMapping(value = "/admin/index.html")
 	public String index(Locale locale, Model model) {
-		/*User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();*/
+		User authenticated = (User) SecurityContextHolder.getContext()
+				.getAuthentication().getPrincipal();
 		
-	/*	System.out.println(user.getAuthorities().toString());*/
 		
-		ArrayList<UserProfile> users = userService.getUserList(0, 15);
+		ArrayList<User> users = userService.getUserList(0, 15);
 		model.addAttribute("users", users);
+		model.addAttribute("user",authenticated);
 		
 		return "admin/index";
 	}
@@ -42,9 +44,9 @@ public class AdminController {
 
 	@RequestMapping(value = "/admin/user/list.html", method = RequestMethod.POST)
 	@ResponseBody
-	public ArrayList<UserProfile> userList(int from, int to) {
+	public ArrayList<User> userList(int from, int to) {
 
-		ArrayList<UserProfile> users = userService.getUserList(from, to);
+		ArrayList<User> users = userService.getUserList(from, to);
 		return users;
 	}
 

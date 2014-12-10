@@ -1,9 +1,9 @@
 package org.com.myapp.form;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 public class RegisterForm {
 
@@ -11,41 +11,43 @@ public class RegisterForm {
 	private String username;
 	private String password;
 	private String passwordConfirm;
-	
-	@NotNull @Email(message="register.emailValidate")
+
+	@NotEmpty(message="register.required")
+	@Email(message = "register.emailValidate")
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	@NotNull
+
+	@NotEmpty(message="register.required")
 	public String getUsername() {
 		return username;
 	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
-	@NotNull
-	@Min(value=8)
+
+	@NotEmpty(message="register.required")
+	@Size(min = 8, message = "register.passwordValidate")
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	@NotNull
+
+	@NotEmpty(message="register.required")
 	public String getPasswordConfirm() {
 		return passwordConfirm;
 	}
+
 	public void setPasswordConfirm(String passwordConfirm) {
 		this.passwordConfirm = passwordConfirm;
 	}
-	
-	
-	
-	
+
 }

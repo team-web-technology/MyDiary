@@ -19,6 +19,8 @@
 	</bean>
 	<bean id="userService" class="org.com.myapp.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
+		<property name="roleDao" ref="roleDao"></property>
+		<property name="hashCode" ref="hashCode"></property>
 	</bean>
 
 

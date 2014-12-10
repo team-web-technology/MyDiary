@@ -12,7 +12,7 @@ public interface UserService {
 	UserProfile findUserByName(String name);
 	UserProfile createUser(UserProfile user);
 	User createUser(RegisterForm registerForm);
-	ArrayList<UserProfile> getUserList(int from,int to);
+	ArrayList<User> getUserList(int from,int to);
 	
 	Boolean autoLogin(User user);
 	

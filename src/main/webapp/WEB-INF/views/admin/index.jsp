@@ -22,7 +22,7 @@
 							<td>${user.id }</td>
 							<td>${user.username }</td>
 							<td>${user.email}</td>
-							<td>${user.role.role}</td>
+							<td>${user.role}</td>
 							<td>${user.enabled }</td>
 							<td>${user.acountNonLocked}</td>
 							<td>${user.acountNonExpired}</td>

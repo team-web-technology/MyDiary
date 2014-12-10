@@ -13,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Diary</title>
 <head>
-<meta charset="utf-8" />
+
 <title>Scale | Web Application</title>
 <meta name="description"
 	content="app, web app, responsive, admin dashboard, admin, flat, flat ui, ui kit, off screen nav" />
@@ -53,31 +53,27 @@
 			commandName="user">
 			<div class="list-group">
 				<div class="list-group-item">
-					<form:input path="username" placeholder='<spring:message code="register.username"/>' class="form-control no-border"
+					<input type="text"  placeholder='<spring:message code="register.username"/>' class="form-control no-border"
 						name="username"/>
 					<form:errors path="username" />
 				</div>
 				<div class="list-group-item">
-					<form:input path="email" placeholder='<spring:message code="register.email"/>' name="email"
+					<input type="email" placeholder='<spring:message  code="register.email"/>' name="email"
 						class="form-control no-border"/>
 					<form:errors path="email" />
 				</div>
 				<div class="list-group-item">
-					<form:input path="password" placeholder='<spring:message code="register.password"/>'
+					<input type="password" placeholder='<spring:message code="register.password"/>'
 						class="form-control no-border" name="password"/>
 					<form:errors path="password" />
 				</div>
 				<div class="list-group-item">
-					<form:input path="password" placeholder='<spring:message code="register.passwordConfirm"/>'
+					<input type="passwordConfirm" placeholder='<spring:message code="register.passwordConfirm"/>'
 						class="form-control no-border" name="passwordConfirm"/>
 					<form:errors path="passwordConfirm" />
 				</div>
 			</div>
-			<div class="checkbox m-b">
-				<label> <input type="checkbox"> Agree the <a
-					href="#">terms and policy</a>
-				</label>
-			</div>
+			
 			<button type="submit" class="btn btn-lg btn-primary btn-block">Sign
 				up</button>
 			<div class="line line-dashed"></div>

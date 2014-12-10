@@ -12,7 +12,6 @@
  
     <definition name="home" extends="base.definition">
         <put-attribute name="title" value="Diary Social" />
-        
     </definition>
  
 </tiles-definitions>
