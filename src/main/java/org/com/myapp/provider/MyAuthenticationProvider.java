@@ -37,8 +37,9 @@ public class MyAuthenticationProvider implements AuthenticationProvider {
 
 		Role userRole = userAuthenticationService
 				.loadRoleByUserId(user.getId());
-		user.setRole(userRole);
-		System.out.println(user.getRole().getRole());
+		user.setRole(userRole.getName());
+		System.out.println("My Authentication: "+user.getAuthorities().toString());
+		
 		return new UsernamePasswordAuthenticationToken(user,
 				user.getPassword(), user.getAuthorities());
 

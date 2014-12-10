@@ -2,15 +2,12 @@ package org.com.myapp.model;
 
 // Generated Dec 4, 2014 12:47:13 AM by Hibernate Tools 3.6.0
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -22,8 +19,12 @@ import javax.persistence.Table;
 @Table(name = "role", catalog = "diary_v2")
 public class Role implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int idauthority;
-	private String role;
+	private String name;
 	private Set<UserProfile> userprofiles = new HashSet<UserProfile>(0);
 
 	public Role() {
@@ -31,12 +32,12 @@ public class Role implements java.io.Serializable {
 
 	public Role(int idauthority, String role) {
 		this.idauthority = idauthority;
-		this.role = role;
+		this.name = role;
 	}
 
 	public Role(int idauthority, String role, Set<UserProfile> userprofiles) {
 		this.idauthority = idauthority;
-		this.role = role;
+		this.name = role;
 		this.userprofiles = userprofiles;
 	}
 
@@ -51,12 +52,12 @@ public class Role implements java.io.Serializable {
 	}
 
 	@Column(name = "role", nullable = false, length = 45)
-	public String getRole() {
-		return this.role;
+	public String getName() {
+		return this.name;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setName(String role) {
+		this.name = role;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "role")
