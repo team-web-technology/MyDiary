@@ -20,6 +20,14 @@
 	<bean id="userService" class="org.com.myapp.service.UserServiceImpl">
 		<property name="userDao" ref="userDao"></property>
 	</bean>
+	
+	<bean id="friendDAO" class="org.com.myapp.dao.FriendDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="friendService" class="org.com.myapp.service.FriendServiceImpl">
+		<property name="friendDAO" ref="friendDAO"></property>
+	</bean>
+	
 
 
 	<bean id="userAuthenticationService" class="org.com.myapp.service.UserAuthenticationService">
