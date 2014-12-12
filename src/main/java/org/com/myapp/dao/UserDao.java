@@ -1,6 +1,7 @@
 package org.com.myapp.dao;
 
-import org.com.myapp.form.User;
+import java.util.List;
+
 import org.com.myapp.model.UserProfile;
 import org.springframework.dao.DataAccessException;
 
@@ -11,5 +12,7 @@ public interface UserDao {
 	UserProfile findUserByName(String name) throws DataAccessException;
 
 
-	void createUser(UserProfile user);
+	UserProfile createUser(UserProfile user);
+	
+	List<UserProfile> getUserList(int from, int to);
 }
