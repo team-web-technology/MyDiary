@@ -36,7 +36,7 @@ public class UserProfile implements java.io.Serializable{
 	private String username;
 	private String password;
 	private String email;
-	private Boolean accountNonExpired;
+	private Boolean accountNonExpired=true;
 	private Boolean accountNonLocked;
 	private Boolean credentialsNonExpired;
 	private Boolean enabled;
@@ -138,7 +138,7 @@ public class UserProfile implements java.io.Serializable{
 		this.email = email;
 	}
 
-	@Column(name = "AccountNonExpired")
+	@Column(name = "AcountNonExpired")
 	public Boolean getAccountNonExpired() {
 		return this.accountNonExpired;
 	}
@@ -147,7 +147,7 @@ public class UserProfile implements java.io.Serializable{
 		this.accountNonExpired = acountNonExpired;
 	}
 
-	@Column(name = "AccountNonLocked")
+	@Column(name = "AcountNonLocked")
 	public Boolean getAccountNonLocked() {
 		return this.accountNonLocked;
 	}
@@ -249,6 +249,10 @@ public class UserProfile implements java.io.Serializable{
 
 	public void setCategories(Set<Category> categories) {
 		this.categories = categories;
+	}
+	@Override
+	public String toString(){
+		return "id="+id+", role="+role+", username="+username+", email="+email;
 	}
 
 	
