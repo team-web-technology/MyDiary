@@ -37,8 +37,10 @@
         </property>
     </bean>
  
-     
-    <bean id="friendDAO" class="org.com.myapp.dao.FriendDAOImpl">
-        <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" />
+     <bean id="friendDAO" class="org.com.myapp.dao.FriendDAOImpl">
+     	<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+      </bean>
+    <bean id="friendService" class="org.com.myapp.service.FriendServiceImpl">
+        <property name="friendDAO" ref="friendDAO" />
     </bean>
 </beans>

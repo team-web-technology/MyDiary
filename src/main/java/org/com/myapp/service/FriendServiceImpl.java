@@ -6,6 +6,8 @@ import javax.transaction.Transactional;
 
 import org.com.myapp.dao.FriendDAO;
 import org.com.myapp.model.UserProfile;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +15,6 @@ import org.springframework.stereotype.Service;
 public class FriendServiceImpl implements FriendService{
 	@Autowired
 	private FriendDAO friendDAO;
-	
 
 	public FriendDAO getFriendDAO() {
 		return friendDAO;
